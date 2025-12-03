@@ -9,7 +9,7 @@ public class Librarian extends Person{
 
 
     public Librarian(int id, String fullName, String username, String password, List allBooks) {
-        super(id, fullName);
+        super(fullName);
         this.username = username;
         this.password = password;
         this.allBooks = allBooks;
@@ -22,11 +22,22 @@ public class Librarian extends Person{
         }
     }
 
-    public void findById(Book book) {
+    public void updateBook(Book updatedBook) {
+        for(Book book : allBooks) {
+            if(book.getId() == updatedBook.getId()) {
+                book.setTitle(updatedBook.getTitle());
+                book.setAuthor(updatedBook.getAuthor());
+            }
+        }
+    }
+
+
+
+
+    public void deleteBook(Book book) {
         if(allBooks.contains(book)) {
-            System.out.println("Book found");
-        } else {
-            System.out.println("Book not found");
+            allBooks.remove(book);
+            System.out.println("Book removed");
         }
     }
 

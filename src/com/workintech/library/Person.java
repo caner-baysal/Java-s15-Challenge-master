@@ -1,21 +1,14 @@
 package com.workintech.library;
 
 public abstract class Person {
-    private int id;
+
     private String fullName;
 
-    public Person(int id, String fullName) {
-        this.id = id;
+    public Person(String fullName) {
         this.fullName = fullName;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getFullName() {
         return fullName;
@@ -29,6 +22,6 @@ public abstract class Person {
 
     @Override
     public String toString() {
-        return "ID: " + this.id + " Fullname: " + this.fullName;
+        return " Fullname: " + this.fullName;
     }
 }

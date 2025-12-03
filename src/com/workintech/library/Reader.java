@@ -6,9 +6,8 @@ import java.util.List;
 public class Reader extends Person{
     private List<Book> borrowedBooks;
 
-    public Reader(int id, String fullName, List<Book> borrowedBooks, Book book) {
-        super(id, fullName);
-        this.borrowedBooks = new ArrayList<Book>();
+    public Reader(String fullName) {
+        super(fullName);
     }
 
     public List<Book> getBooks() {
@@ -19,19 +18,23 @@ public class Reader extends Person{
         this.borrowedBooks = books;
     }
 
+    public boolean canBorrowMore() {
+        return borrowedBooks.size() < 5;
+    }
+
     public void purchaseBook(Book book) {
-        if(borrowedBooks.size() < 5) {
+        if(canBorrowMore()) {
             borrowedBooks.add(book);
-            book.setStatus(String.valueOf(BookStatus.BORROWED));
+            book.setStatus(BookStatus.valueOf(String.valueOf(BookStatus.BORROWED)));
         } else {
             System.out.println("Reader already has 5 books");
         }
     }
 
     public void borrowBook(Book book) {
-        if(borrowedBooks.size() < 5) {
+        if(canBorrowMore()) {
             borrowedBooks.add(book);
-            book.setStatus(String.valueOf(BookStatus.BORROWED));
+            book.setStatus(BookStatus.valueOf(String.valueOf(BookStatus.BORROWED)));
         } else {
             System.out.println("Reader already have 5 books");
         }
@@ -39,11 +42,11 @@ public class Reader extends Person{
 
     public void returnBook(Book book) {
         borrowedBooks.remove(book);
-        book.setStatus(String.valueOf(BookStatus.AVAILABLE));
+        book.setStatus(BookStatus.valueOf(String.valueOf(BookStatus.AVAILABLE)));
     }
 
-    public void showBook(Book book) {
-        System.out.println(book);
+    public void showBook() {
+        System.out.println(borrowedBooks);
     }
 
 

@@ -3,8 +3,8 @@ package com.workintech.library;
 public class Student extends Person{
     private int studentId;
 
-    public Student(int id, String fullName, int studentId) {
-        super(id, fullName);
+    public Student(String fullName, int studentId) {
+        super(fullName);
         this.studentId = studentId;
     }
 

@@ -4,27 +4,26 @@ package com.workintech.library;
 import java.util.Date;
 import java.util.Objects;
 
-public class Book implements Assignable {
+public class Book {
     private int bookId;
-    private String name;
+    private String title;
     private double price;
-    private String status;
-    private double edition;
-    private Date dateOfPurchase;
+    private boolean available = true;
     private Author author;
+    private Category category;
+    private BookStatus status;
 
-    public Book(int bookId, String name, double price, String status, double edition, Date dateOfPurchase, Author author) {
+    public Book(int bookId, String title, double price, Author author, Category category, BookStatus status) {
         this.bookId = bookId;
-        this.name = name;
+        this.title = title;
         this.price = price;
-        this.status = status;
-        this.edition = edition;
-        this.dateOfPurchase = dateOfPurchase;
         this.author = author;
+        this.category = category;
+        this.status = status;
     }
 
-    public Book(String name, Author author) {
-        this.name = name;
+    public Book(String title, Author author) {
+        this.title = title;
         this.author = author;
     }
     public int getId() {
@@ -35,12 +34,12 @@ public class Book implements Assignable {
         this.bookId = bookId;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public double getPrice() {
@@ -51,80 +50,74 @@ public class Book implements Assignable {
         this.price = price;
     }
 
-    public String isStatus() {
+    public boolean isAvailable() {
+        return available;
+    }
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
+    public Author getAuthor() {
+        return this.author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public BookStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(BookStatus status) {
         this.status = status;
     }
 
-    public double getEdition() {
-        return edition;
-    }
-
-    public void setEdition(double edition) {
-        this.edition = edition;
-    }
-
-    public Date getDateOfPurchase() {
-        return dateOfPurchase;
-    }
-
-    public void setDateOfPurchase(Date dateOfPurchase) {
-        this.dateOfPurchase = dateOfPurchase;
-    }
-
-
-    @Override
-    public String toString() {
-        return "id=" + this.bookId +
-                ", name='" + this.name + '\'' +
-                ", price=" + this.price +
-                ", status=" + this.status +
-                ", edition=" + this.edition +
-                ", dateOfPurchase=" + this.dateOfPurchase;
-    }
-
-    @Override
-    public void getTitle() {
-
-    }
-
-    @Override
-    public void getAuthor() {
-
-    }
-
-    @Override
     public void changeOwner() {
 
     }
 
-    @Override
+
     public void getOwner() {
 
     }
 
-    @Override
+
     public void display() {
 
     }
 
     @Override
-    public void updateStatus() {
-
+    public String toString() {
+        return "Book{" +
+                "bookId=" + bookId +
+                ", title='" + title + '\'' +
+                ", price=" + price +
+                ", available=" + available +
+                ", author=" + author +
+                ", category=" + category +
+                '}';
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return bookId == book.bookId;
+        return bookId == book.bookId && Double.compare(price, book.price) == 0 && available == book.available && Objects.equals(title, book.title) && Objects.equals(author, book.author) && category == book.category;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(bookId);
+        return Objects.hash(bookId, title, price, available, author, category);
     }
+
+
 }

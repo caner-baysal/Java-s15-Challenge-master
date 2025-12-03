@@ -8,8 +8,8 @@ public class Author extends Person{
 
     private List<Book> booksWritten = new LinkedList<>();
 
-    public Author(int id, String fullName) {
-        super(id, fullName);
+    public Author(String fullName) {
+        super(fullName);
         this.booksWritten = new LinkedList<>();
     }
 

@@ -39,10 +39,18 @@ public class Invoice {
         this.amount = amount;
     }
 
+    public boolean isRefunded() {
+        return isRefunded;
+    }
+
+    public void setRefunded(boolean refunded) {
+        isRefunded = refunded;
+    }
+
     public void generateInvoice() {
         System.out.println("----INVOICE----");
         System.out.println("Reader: " + reader.getFullName());
-        System.out.println("Book: " + book.getName());
+        System.out.println("Book: " + book.getTitle());
         System.out.println("Amount: " + amount);
         System.out.println("Book has been issued.");
         System.out.println("The reader will have to pay daily fine, if the book is not delivered back until the deadline.");
