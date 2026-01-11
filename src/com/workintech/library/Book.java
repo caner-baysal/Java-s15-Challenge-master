@@ -81,20 +81,6 @@ public class Book {
         this.status = status;
     }
 
-    public void changeOwner() {
-
-    }
-
-
-    public void getOwner() {
-
-    }
-
-
-    public void display() {
-
-    }
-
     @Override
     public String toString() {
         return "Book{" +

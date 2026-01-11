@@ -22,7 +22,10 @@ public class Main {
             System.out.println("4. List The Author's Books");
             System.out.println("5. Add Book");
             System.out.println("6. Remove Book");
-            System.out.println("7. Exit");
+            System.out.println("7. Show Book By Id");
+            System.out.println("8. List Books By Category");
+            System.out.println("9. Update Book");
+            System.out.println("0. Exit");
             System.out.print("Your Choice: ");
 
             int choice = scanner.nextInt();
@@ -53,10 +56,10 @@ public class Main {
 
                 case 4:
                     System.out.println("Author's Name: ");
-                    String author = scanner.nextLine();
-                    System.out.println(author + "'s Books: ");
-                    for(Book book : library.getBooksByAuthor(Category.valueOf(author))) {
-                        System.out.println(" - " + book.getTitle());
+                    String authorName = scanner.nextLine();
+                    System.out.println(authorName + "'s Books: ");
+                    for (Book book : library.findBookByAuthor(authorName)) {
+                        System.out.println(book.getTitle() + " " + book.getAuthor());
                     } break;
 
                 case 5:
@@ -81,6 +84,39 @@ public class Main {
                     } break;
 
                 case 7:
+                    System.out.println("Enter Book Id: ");
+                    int idToShow = scanner.nextInt();
+                    scanner.nextLine();
+                    Book bookToShow = library.findBookById(idToShow);
+                    if(bookToShow != null) {
+                        System.out.println("Book Found: " + bookToShow.getTitle() + " by " + bookToShow.getAuthor());
+                    } break;
+
+                case 8:
+                    System.out.println("Enter Book Category: ");
+                    String categoryToShow = scanner.nextLine();
+                    System.out.println("Books in Category " + categoryToShow + ": ");
+                    for (Book book : library.getBooksByCategory(Category.valueOf(categoryToShow))) {
+                        System.out.println(book.getTitle() + " by " + book.getAuthor());
+                    } break;
+
+                case 9:
+                    System.out.println("Enter Book Id To Update: ");
+                    int idToUpdate = scanner.nextInt();
+                    scanner.nextLine();
+                    Book bookToUpdate = library.findBookById(idToUpdate);
+                    if(bookToUpdate != null) {
+                        System.out.println("Enter New Title: ");
+                        String newTitle = scanner.nextLine();
+                        bookToUpdate.setTitle(newTitle);
+                        library.updateBook(bookToUpdate);
+                        System.out.println("Book Updated");
+                    } else {
+                        System.out.println("Book Not Found");
+                    } break;
+
+
+                case 0:
                     System.out.println("Exiting...");
                     scanner.close();
                     return;

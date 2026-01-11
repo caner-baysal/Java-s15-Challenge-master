@@ -22,17 +22,6 @@ public class Librarian extends Person{
         }
     }
 
-    public void updateBook(Book updatedBook) {
-        for(Book book : allBooks) {
-            if(book.getId() == updatedBook.getId()) {
-                book.setTitle(updatedBook.getTitle());
-                book.setAuthor(updatedBook.getAuthor());
-            }
-        }
-    }
-
-
-
 
     public void deleteBook(Book book) {
         if(allBooks.contains(book)) {

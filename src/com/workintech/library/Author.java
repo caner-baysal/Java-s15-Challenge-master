@@ -1,16 +1,18 @@
 package com.workintech.library;
 
 import java.lang.reflect.Array;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public class Author extends Person{
 
-    private List<Book> booksWritten = new LinkedList<>();
+    private Set<Book> booksWritten = new HashSet<>();
 
     public Author(String fullName) {
         super(fullName);
-        this.booksWritten = new LinkedList<>();
+        this.booksWritten = new HashSet<>();
     }
 
     @Override
@@ -19,12 +21,16 @@ public class Author extends Person{
     }
 
 
-    public List<Book> getBooks() {
-        return booksWritten;
+    public Set<Book> getBooks() {
+        return new HashSet<>(booksWritten);
     }
 
-    public void setBooks(List<Book> books) {
-        this.booksWritten = books;
+    public void setBooks(Set<Book> books) {
+        if(books == null) {
+            this.booksWritten = new HashSet<>();
+        } else {
+            this.booksWritten = new HashSet<>(books);
+        }
     }
 
     public void newBook(String name, Author author) {
